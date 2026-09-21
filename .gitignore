@@ -2,30 +2,27 @@
 # Python / Django Backend
 # =========================
 
-# Virtual environment
 venv/
 env/
 .venv/
 
-# Python cache
 __pycache__/
 *.py[cod]
-*$py.class
 
-# Django
 db.sqlite3
 db.sqlite3-journal
 
-# Environment variables
 .env
 .env.*
 
-# Django static/media
 staticfiles/
 media/
 
-# Logs
 *.log
+
+# Firebase credentials
+firebase-credentials.json
+
 
 # =========================
 # React / Vite Frontend
@@ -35,20 +32,17 @@ node_modules/
 dist/
 build/
 
-# Environment variables
-.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
+
 # =========================
-# IDE / Editor
+# IDE / OS
 # =========================
 
 .vscode/
 .idea/
-
-# OS files
 .DS_Store
 Thumbs.db
