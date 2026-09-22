@@ -17,6 +17,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase";
 import axios from "axios";
+import { API_URLS } from "../urls"; 
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 export default function Login() {
@@ -41,7 +42,7 @@ export default function Login() {
     setLoading(true);
     try {
       await axios.post(
-        "http://127.0.0.1:8000/api/forgot-password/",
+        API_URLS.forgotPassword,
         { email: form.email },
         { timeout: 10000 }
       );
@@ -100,7 +101,7 @@ export default function Login() {
     const idToken = await cred.user.getIdToken(true);
 
     const response = await axios.post(
-      "http://127.0.0.1:8000/api/firebase-login/",
+      API_URLS.firebaseLogin,
       { access_token: idToken, name: form.username, password: form.password },
       { headers: { "Content-Type": "application/json" }, timeout: 10000 }
     );
@@ -142,7 +143,7 @@ export default function Login() {
 
 
         const response = await axios.post(
-          "http://127.0.0.1:8000/api/firebase-login/",
+            API_URLS.firebaseLogin,
           { access_token: idToken },
           { headers: { "Content-Type": "application/json" }, timeout: 10000 }
         );
@@ -164,7 +165,7 @@ export default function Login() {
 
 
 
-        // const response = await fetch("http://127.0.0.1:8000/api/login/", {
+        // const response =await fetch(API_URLS.login, {
         //   method: "POST",
         //   headers: {
         //     "Content-Type": "application/json",
@@ -233,7 +234,7 @@ export default function Login() {
       const firebaseAccessToken = await firebaseUser.getIdToken(true);
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/firebase-login/",
+         API_URLS.firebaseLogin,
         { access_token: firebaseAccessToken },
         { headers: { "Content-Type": "application/json" } }
       );

@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import axios from "axios";
 import { auth } from "../firebase";
+import { API_URLS } from "../urls";
 
 export default function ForgotPassword() {
   const [params] = useSearchParams();
@@ -46,7 +47,7 @@ export default function ForgotPassword() {
       const cred = await signInWithEmailAndPassword(auth, email, password);
       const idToken = await cred.user.getIdToken();
       await axios.post(
-        "http://127.0.0.1:8000/api/sync-password/",
+        API_URLS.syncPassword,
         { access_token: idToken, new_password: password },
         { timeout: 10000 }
       );

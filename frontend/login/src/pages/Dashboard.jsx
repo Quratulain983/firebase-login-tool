@@ -53,7 +53,7 @@ export default function Dashboard() {
   const refresh = localStorage.getItem("refresh");
 
   try {
-    await fetch("http://127.0.0.1:8000/logout/", {
+    await fetch(API_URLS.logout, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

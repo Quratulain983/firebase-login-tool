@@ -7,6 +7,7 @@ import {
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import axios from "axios";
+import { API_URLS } from "../urls";
 
 export default function ResetPassword() {
     const [searchParams] = useSearchParams();
@@ -85,7 +86,7 @@ const handleSubmit = async (e) => {
   // Step 3: sync the new password to Django
   try {
     await axios.post(
-      "http://127.0.0.1:8000/api/sync_password_after_reset/",
+      API_URLS.syncPassword,
       { access_token: idToken, new_password: password },
       { headers: { "Content-Type": "application/json" }, timeout: 10000 }
     );
